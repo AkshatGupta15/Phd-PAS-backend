@@ -1,0 +1,36 @@
+version: "3.5"
+
+services:
+  database:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./container/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - data:/var/lib/postgresql/data
+  server:
+    build:
+      context: .
+      dockerfile: container/Dockerfile
+    restart: always
+    depends_on:
+      - database
+    networks:
+      - default
+    ports:
+      - "80"
+volumes:
+  data:
+# network with subnet configuration
+networks:
+  default:
+      driver: bridge
+      ipam:
+          driver: default
+          config:
+              - subnet: "192.168.3.0/24"
+                # gateway: "192.168.3.1"
