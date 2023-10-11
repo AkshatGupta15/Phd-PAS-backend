@@ -7,8 +7,8 @@ import (
 
 func AdminRouter(mail_channel chan mail.Mail, r *gin.Engine) {
 	r.GET("/api/admin/rc", getAllRCHandler)
-	r.POST("/api/admin/rc", postRCHandler)
-	r.PUT("/api/admin/rc", editRCHandler)
+	// r.POST("/api/admin/rc", postRCHandler)
+	// r.PUT("/api/admin/rc", editRCHandler)
 
 	admin := r.Group("/api/admin/rc/:rid")
 	admin.Use(checkAdminAccessToRC())
@@ -31,7 +31,7 @@ func AdminRouter(mail_channel chan mail.Mail, r *gin.Engine) {
 		admin.GET("/student", getAllStudentsHandler)
 
 		admin.GET("/student/:sid", getStudentHandler)
-		admin.POST("/student/:sid/clarification", postClarificationHandler(mail_channel))
+		// admin.POST("/student/:sid/clarification", postClarificationHandler(mail_channel))
 		admin.DELETE("/student/:sid", deleteStudentHandler)
 
 		admin.POST("/student", postStudentsHandler(mail_channel))
@@ -52,7 +52,7 @@ func AdminRouter(mail_channel chan mail.Mail, r *gin.Engine) {
 		admin.GET("/student/:sid/resume", getResumesHandler)
 
 		admin.GET("/resume", getAllResumesHandler)
-		admin.PUT("/resume/:rsid/verify", putResumeVerifyHandler(mail_channel))
+		// admin.PUT("/resume/:rsid/verify", putResumeVerifyHandler(mail_channel))
 	}
 }
 
@@ -69,6 +69,7 @@ func StudentRouter(r *gin.Engine) {
 
 		student.POST("/resume", postStudentResumeHandler)
 		student.GET("/resume", getStudentResumeHandler)
+		student.DELETE("/resume", deleteStudentResumeHandler)
 	}
 }
 

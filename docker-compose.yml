@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   database:
-    image: postgres
+    image: postgres:14.7
     restart: always
     environment:
       - POSTGRES_USER=postgres
@@ -19,18 +19,29 @@ services:
     restart: always
     depends_on:
       - database
-    networks:
-      - default
     ports:
-      - "80"
+      - "80:80"
+    volumes:
+      - ./:/go/src/github.com/spo-iitk/ras-backend
+    privileged: true
+  cdn:
+    build:
+      context: ../PhD-CDN
+      dockerfile: ./Dockerfile
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ../PhD-CDN/cdn:/app/cdn
+      - ../PhD-CDN/zip:/app/zip
 volumes:
   data:
 # network with subnet configuration
-networks:
-  default:
-      driver: bridge
-      ipam:
-          driver: default
-          config:
-              - subnet: "192.168.3.0/24"
+# networks:
+#   default:
+#       driver: bridge
+#       ipam:
+#           driver: default
+#           config:
+#               - subnet: "192.168.3.0/24"
                 # gateway: "192.168.3.1"

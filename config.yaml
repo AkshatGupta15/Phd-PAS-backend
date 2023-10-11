@@ -1,5 +1,5 @@
 MAIL:
-  HOST: "smtp.cc.iitk.ac.in"
+  HOST: ""
   PORT: "25"
   BATCH: 200
 JWT:
@@ -29,3 +29,5 @@ PORT:
     APP: 3492
     COMPANY: 3495
     STUDENT: 3500
+CDN:
+  URL: "http://172.18.0.1:8080/cdn"

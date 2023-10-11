@@ -159,9 +159,9 @@ func postStudentsHandler(mail_channel chan mail.Mail) gin.HandlerFunc {
 
 		for _, student := range studentsGlobal {
 			var secondaryProgramDepartmentID uint = 0
-			if util.IsDoubleMajor(student.SecondaryProgramDepartmentID) {
-				secondaryProgramDepartmentID = student.SecondaryProgramDepartmentID
-			}
+			// if util.IsDoubleMajor(student.SecondaryProgramDepartmentID) {
+			// 	secondaryProgramDepartmentID = student.SecondaryProgramDepartmentID
+			// }
 
 			regEmails = append(regEmails, student.IITKEmail)
 			students = append(students, StudentRecruitmentCycle{

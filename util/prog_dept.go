@@ -7,13 +7,13 @@ package util
   96: CHM	| 36: ECO	| 37: MTH	| 97: SDS	|
   98: PHY	|
 */
-var doubleMajorProgramDepartmentIDs = []uint{28, 29, 30, 31, 32, 33, 34, 35, 96, 36, 37, 97, 98}
+// var doubleMajorProgramDepartmentIDs = []uint{28, 29, 30, 31, 32, 33, 34, 35, 96, 36, 37, 97, 98}
 
-func IsDoubleMajor(programDepartmentID uint) bool {
-	for _, id := range doubleMajorProgramDepartmentIDs {
-		if id == programDepartmentID {
-			return true
-		}
-	}
-	return false
-}
+// func IsDoubleMajor(programDepartmentID uint) bool {
+// 	for _, id := range doubleMajorProgramDepartmentIDs {
+// 		if id == programDepartmentID {
+// 			return true
+// 		}
+// 	}
+// 	return false
+// }
