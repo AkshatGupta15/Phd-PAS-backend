@@ -22,10 +22,10 @@ func updateStudentByIDHandler(ctx *gin.Context) {
 		return
 	}
 
-	if updateStudentRequest.SecondaryProgramDepartmentID > updateStudentRequest.ProgramDepartmentID && util.IsDoubleMajor(updateStudentRequest.SecondaryProgramDepartmentID) {
-		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Secondary program department and primary program department seems to be interchanged"})
-		return
-	}
+	// if updateStudentRequest.SecondaryProgramDepartmentID > updateStudentRequest.ProgramDepartmentID && util.IsDoubleMajor(updateStudentRequest.SecondaryProgramDepartmentID) {
+	// 	ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": "Secondary program department and primary program department seems to be interchanged"})
+	// 	return
+	// }
 
 	updated, err := updateStudentByID(ctx, &updateStudentRequest)
 	if err != nil {

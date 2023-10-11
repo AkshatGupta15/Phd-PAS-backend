@@ -14,6 +14,11 @@ func addStudentResume(ctx *gin.Context, resume string, sid uint, rid uint) error
 	return tx.Error
 }
 
+func deleteStudentResume(ctx *gin.Context, sid uint, rid uint) error {
+	tx := db.WithContext(ctx).Model(&StudentRecruitmentCycleResume{}).Where("student_recruitment_cycle_id = ? and recruitment_cycle_id = ?",sid,rid).Delete(&StudentRecruitmentCycleResume{})
+	return tx.Error
+}
+
 func fetchStudentResume(ctx *gin.Context, sid uint, resumes *[]StudentRecruitmentCycleResume) error {
 	tx := db.WithContext(ctx).Model(&StudentRecruitmentCycleResume{}).Where("student_recruitment_cycle_id = ?", sid).Find(resumes)
 	return tx.Error
