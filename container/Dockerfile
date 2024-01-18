@@ -25,7 +25,7 @@ RUN ln -s  $GOPATH/src/github.com/spo-iitk/ras-backend/container/nginx.conf /etc
 
 # This container exposes port 80 to the outside world
 ENV GO111MODULE=on
-EXPOSE 80
+EXPOSE 81
 
 # Run the executable
 CMD ["./scripts/production.sh"]

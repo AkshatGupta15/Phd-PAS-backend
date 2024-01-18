@@ -6,7 +6,7 @@ import (
 )
 
 func StudentRouter(r *gin.Engine) {
-	student := r.Group("/api/student")
+	student := r.Group("/phd-api/student")
 	{
 		student.PUT("", updateStudentHandler)
 		student.GET("", getStudentHandler)
@@ -14,14 +14,14 @@ func StudentRouter(r *gin.Engine) {
 }
 
 func AdminRouter(r *gin.Engine) {
-	admin := r.Group("/api/admin/student")
+	admin := r.Group("/phd-api/admin/student")
 	{
 		admin.DELETE("/:sid", deleteStudentHandler)
 		admin.GET("", getAllStudentsHandler)
 		admin.GET("/limited", getLimitedStudentsHandler)
 		admin.PUT("", updateStudentByIDHandler)
 		admin.GET("/:sid", getStudentByIDHandler)
-		admin.PUT("/:sid/editable",makeStudentEdiatableHandler)
+		admin.PUT("/:sid/editable", makeStudentEdiatableHandler)
 		admin.PUT("/:sid/verify", verifyStudentHandler)
 		admin.GET("/:sid/history", ras.PlaceHolderController)
 	}

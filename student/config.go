@@ -1,6 +1,8 @@
 package student
 
 import (
+	"log"
+
 	"github.com/sirupsen/logrus"
 
 	"github.com/spf13/viper"
@@ -22,6 +24,7 @@ func openConnection() {
 
 	dsn := "host=" + host + " user=" + user + " password=" + password
 	dsn += " dbname=" + dbName + " port=" + port + " sslmode=disable TimeZone=Asia/Kolkata"
+	log.Println(dsn)
 
 	database, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),
