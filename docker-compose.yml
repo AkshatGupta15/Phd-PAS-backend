@@ -8,7 +8,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - ./container/init.sql:/docker-entrypoint-initdb.d/init.sql
       - data:/var/lib/postgresql/data
@@ -20,28 +20,28 @@ services:
     depends_on:
       - database
     ports:
-      - "80:80"
+      - "81:80"
     volumes:
       - ./:/go/src/github.com/spo-iitk/ras-backend
     privileged: true
-  cdn:
-    build:
-      context: ../PhD-CDN
-      dockerfile: ./Dockerfile
-    restart: always
-    ports:
-      - "8080:80"
-    volumes:
-      - ../PhD-CDN/cdn:/app/cdn
-      - ../PhD-CDN/zip:/app/zip
+  # cdn:
+  #   build:
+  #     context: ../PhD-CDN
+  #     dockerfile: ./Dockerfile
+  #   restart: always
+  #   ports:
+  #     - "8080:80"
+  #   volumes:
+  #     - ../PhD-CDN/cdn:/app/cdn
+  #     - ../PhD-CDN/zip:/app/zip
 volumes:
   data:
 # network with subnet configuration
-# networks:
-#   default:
-#       driver: bridge
-#       ipam:
-#           driver: default
-#           config:
-#               - subnet: "192.168.3.0/24"
+networks:
+  default:
+      driver: bridge
+      ipam:
+          driver: default
+          config:
+              - subnet: "192.168.4.0/24"
                 # gateway: "192.168.3.1"
