@@ -6,7 +6,7 @@ import (
 )
 
 func RASRouter(mail_channel chan mail.Mail, r *gin.Engine) {
-	api := r.Group("/phd-api/ras")
+	api := r.Group("/api/ras")
 	{
 		api.GET("", HelloWorldController)
 		api.GET("/testmail", MailController(mail_channel))

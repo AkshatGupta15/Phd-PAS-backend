@@ -30,4 +30,4 @@ PORT:
     COMPANY: 3495
     STUDENT: 3500
 CDN:
-  URL: "http://placement.iitk.ac.in/phd-cdn"
+  URL: "http://phdplacement.iitk.ac.in/cdn"

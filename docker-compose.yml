@@ -19,11 +19,10 @@ services:
     restart: always
     depends_on:
       - database
+    networks:
+      - default
     ports:
       - "81:80"
-    volumes:
-      - ./:/go/src/github.com/spo-iitk/ras-backend
-    privileged: true
   # cdn:
   #   build:
   #     context: ../PhD-CDN

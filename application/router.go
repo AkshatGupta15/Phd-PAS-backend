@@ -7,7 +7,7 @@ import (
 
 func AdminRouter(mail_channel chan mail.Mail, r *gin.Engine) {
 
-	admin := r.Group("/phd-api/admin/application/rc/:rid")
+	admin := r.Group("/api/admin/application/rc/:rid")
 	{
 		admin.GET("/count", getApplicationCountHandler)
 		admin.GET("/stats", getStatsHandler)
@@ -52,7 +52,7 @@ func AdminRouter(mail_channel chan mail.Mail, r *gin.Engine) {
 }
 
 func StudentRouter(mail_channel chan mail.Mail, r *gin.Engine) {
-	student := r.Group("/phd-api/student/application/rc/:rid")
+	student := r.Group("/api/student/application/rc/:rid")
 	student.Use(ensureActiveStudent())
 	{
 		student.GET("/proforma", getProformasForStudentHandler)
@@ -73,7 +73,7 @@ func StudentRouter(mail_channel chan mail.Mail, r *gin.Engine) {
 	}
 }
 func CompanyRouter(r *gin.Engine) {
-	company := r.Group("/phd-api/company/application/rc/:rid")
+	company := r.Group("/api/company/application/rc/:rid")
 	company.Use(ensureCompany())
 	{
 		company.GET("/proforma", getProformaForCompanyHandler)

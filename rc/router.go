@@ -6,11 +6,11 @@ import (
 )
 
 func AdminRouter(mail_channel chan mail.Mail, r *gin.Engine) {
-	r.GET("/phd-api/admin/rc", getAllRCHandler)
-	// r.POST("/phd-api/admin/rc", postRCHandler)
-	// r.PUT("/phd-api/admin/rc", editRCHandler)
+	r.GET("/api/admin/rc", getAllRCHandler)
+	// r.POST("/api/admin/rc", postRCHandler)
+	// r.PUT("/api/admin/rc", editRCHandler)
 
-	admin := r.Group("/phd-api/admin/rc/:rid")
+	admin := r.Group("/api/admin/rc/:rid")
 	admin.Use(checkAdminAccessToRC())
 	{
 		admin.GET("", getRCHandler)
@@ -57,9 +57,9 @@ func AdminRouter(mail_channel chan mail.Mail, r *gin.Engine) {
 }
 
 func StudentRouter(r *gin.Engine) {
-	r.GET("/phd-api/student/rc", getStudentRCHandler)
-	r.GET("/phd-api/student/rc/:rid", studentWhoamiHandler)
-	student := r.Group("/phd-api/student/rc/:rid")
+	r.GET("/api/student/rc", getStudentRCHandler)
+	r.GET("/api/student/rc/:rid", studentWhoamiHandler)
+	student := r.Group("/api/student/rc/:rid")
 	student.Use(ensureActiveStudent())
 	{
 		student.GET("/notice", getAllNoticesForStudentHandler)
@@ -74,8 +74,8 @@ func StudentRouter(r *gin.Engine) {
 }
 
 func CompanyRouter(r *gin.Engine) {
-	r.GET("/phd-api/company/whoami", companyWhoamiHandler)
-	company := r.Group("/phd-api/company/rc")
+	r.GET("/api/company/whoami", companyWhoamiHandler)
+	company := r.Group("/api/company/rc")
 	{
 		company.GET("", getCompanyRCHandler)                   // get registered rc
 		company.GET("/all", getAllRCHandlerForCompany)         // get all rc
