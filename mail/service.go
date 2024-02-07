@@ -17,8 +17,8 @@ type Mail struct {
 
 func (mail *Mail) BuildMessage() []byte {
 	message := "MIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";\r\n"
-	message += fmt.Sprintf("From: Recruitment Automation System IITK<%s>\r\n", sender)
-	message += fmt.Sprintf("Subject: %s | Recruitment Automation System\r\n", mail.Subject)
+	message += fmt.Sprintf("From: PhD Recruitment Automation System IITK<%s>\r\n", sender)
+	message += fmt.Sprintf("Subject: %s | PhD Recruitment Automation System\r\n", mail.Subject)
 
 	// If mass mailing, BCC all the users
 	if len(mail.To) == 1 {
@@ -28,7 +28,7 @@ func (mail *Mail) BuildMessage() []byte {
 	}
 
 	message += strings.Replace(mail.Body, "\n", "<br>", -1)
-	message += "<br><br>--<br>Recruitment Automation System<br>"
+	message += "<br><br>--<br>PhD Recruitment Automation System<br>"
 	message += "Indian Institute of Technology Kanpur<br><br>"
 	message += "<small>This is an auto-generated email. Please do not reply.</small>"
 

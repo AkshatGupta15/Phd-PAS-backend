@@ -61,7 +61,7 @@ func insertCalenderApplicationDeadline(proforma *Proforma, event *ProformaEvent)
 
 	cevent := &calendar.Event{
 		Summary:  fmt.Sprintf("Application Deadline: %s - %s", proforma.Profile, proforma.CompanyName),
-		Location: "Recruitment Automation System",
+		Location: "PhD Recruitment Automation System",
 		Description: fmt.Sprintf(
 			"A new opening has been created for the profile of %s in the company %s. Application is due %s\nhttps://placement.iitk.ac.in/student/rc/%d/proforma/%d",
 			proforma.Profile, proforma.CompanyName,
