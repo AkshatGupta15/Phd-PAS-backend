@@ -139,16 +139,16 @@ func putEventHandler(ctx *gin.Context) {
 		}
 	}
 
-	cID := getCalenderID(proforma.RecruitmentCycleID)
+	// cID := getCalenderID(proforma.RecruitmentCycleID)
 
-	if cID == "" {
-		ctx.JSON(http.StatusNotImplemented, gin.H{"error": "Please as web head to generate a new calender in admin.events:218"})
-		return
-	}
+	// if cID == "" {
+	// 	ctx.JSON(http.StatusNotImplemented, gin.H{"error": "Please as web head to generate a new calender in admin.events:218"})
+	// 	return
+	// }
 
 	ctx.JSON(http.StatusOK, event)
 
-	go insertCalenderEvent(&event, &proforma, loc, time_zone, cID)
+	// go insertCalenderEvent(&event, &proforma, loc, time_zone, cID)
 }
 
 func deleteEventHandler(ctx *gin.Context) {
@@ -165,18 +165,18 @@ func deleteEventHandler(ctx *gin.Context) {
 		return
 	}
 
-	rid, err := util.ParseUint(ctx.Param("rid"))
-	if err != nil {
-		ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
+	// rid, err := util.ParseUint(ctx.Param("rid"))
+	// if err != nil {
+	// 	ctx.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	// 	return
+	// }
 
-	cID := getCalenderID(rid)
+	// cID := getCalenderID(rid)
 
-	if cID == "" {
-		ctx.JSON(http.StatusNotImplemented, gin.H{"error": "Please as web head to generate a new calender in admin.events:218"})
-		return
-	}
+	// if cID == "" {
+	// 	ctx.JSON(http.StatusNotImplemented, gin.H{"error": "Please as web head to generate a new calender in admin.events:218"})
+	// 	return
+	// }
 
 	err = deleteEvent(ctx, eid)
 	if err != nil {
@@ -186,5 +186,5 @@ func deleteEventHandler(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, gin.H{"status": "Successfully deleted event"})
 
-	go deleteCalenderEvent(cID, &cevent)
+	// go deleteCalenderEvent(cID, &cevent)
 }
