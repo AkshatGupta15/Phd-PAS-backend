@@ -23,7 +23,7 @@ func FetchStudentsByID(ctx *gin.Context, id []uint, students *[]Student) error {
 	return tx.Error
 }
 
-func getStudentByEmail(ctx *gin.Context, student *Student, email string) error {
+func GetStudentByEmail(ctx *gin.Context, student *Student, email string) error {
 	tx := db.WithContext(ctx).Where("iitk_email =?", email).First(student)
 	return tx.Error
 }
@@ -58,7 +58,7 @@ func verifyStudent(ctx *gin.Context, student *Student) (bool, error) {
 
 func updateStudentByEmail(ctx *gin.Context, student *Student, email string) (bool, error) {
 	var studentDetails Student
-	err := getStudentByEmail(ctx, &studentDetails, student.IITKEmail)
+	err := GetStudentByEmail(ctx, &studentDetails, student.IITKEmail)
 	if err != nil {
 		return false, err
 	}

@@ -171,10 +171,12 @@ func fetchProformaForEligibleStudent(ctx *gin.Context, rid uint, student *rc.Stu
 		Where("student_recruitment_cycle_id = ?", student.ID).
 		Select("proforma_id")
 
+	stageFetch, _ := extractStudentStageofPhD(ctx)
+
 	tx := db.WithContext(ctx).
 		Where(
-			"recruitment_cycle_id = ? AND is_approved = ? AND deadline > ? AND (eligibility LIKE ? or eligibility like ?) AND cpi_cutoff <= ? AND id NOT IN (?)",
-			rid, true, time.Now().UnixMilli(), string(eligibility)+"%", string(secondary_eligibility)+"%", student.CPI, subQuery).
+			"recruitment_cycle_id = ? AND is_approved = ? AND deadline > ? AND (eligibility LIKE ? or eligibility like ?) AND cpi_cutoff <= ? AND id NOT IN (?) AND additional_eligibility like (?)",
+			rid, true, time.Now().UnixMilli(), string(eligibility)+"%", string(secondary_eligibility)+"%", student.CPI, subQuery, "%"+stageFetch+"%").
 		Select(
 			"id",
 			"company_name",
