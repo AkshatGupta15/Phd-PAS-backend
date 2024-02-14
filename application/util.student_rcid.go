@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/spo-iitk/ras-backend/middleware"
 	"github.com/spo-iitk/ras-backend/rc"
+	"github.com/spo-iitk/ras-backend/student"
 	"github.com/spo-iitk/ras-backend/util"
 )
 
@@ -35,4 +36,20 @@ func extractStudentRCID(ctx *gin.Context) (uint, error) {
 	}
 
 	return studentrcid, nil
+}
+
+func extractStudentStageofPhD(ctx *gin.Context) (string, error) {
+	user_email := middleware.GetUserID(ctx)
+	if user_email == "" {
+		return "", errors.New("unauthorized")
+	}
+	var stud student.Student
+
+	err := student.GetStudentByEmail(ctx, &stud, user_email)
+	if err != nil {
+		return "", errors.New("unable to fetch Student by Email")
+	}
+
+	return stud.Specialization, nil
+
 }
