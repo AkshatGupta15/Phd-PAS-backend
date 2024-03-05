@@ -52,7 +52,7 @@ func AdminRouter(mail_channel chan mail.Mail, r *gin.Engine) {
 		admin.GET("/student/:sid/resume", getResumesHandler)
 
 		admin.GET("/resume", getAllResumesHandler)
-		// admin.PUT("/resume/:rsid/verify", putResumeVerifyHandler(mail_channel))
+		admin.PUT("/resume/:rsid/verify", putResumeVerifyHandler(mail_channel))
 	}
 }
 
