@@ -39,4 +39,8 @@ type Student struct {
 	FriendPhone                  string  `json:"friend_phone"`
 	IsEditable                   bool    `json:"is_editable" gorm:"default:true"`
 	IsVerified                   bool    `json:"is_verified" gorm:"default:false"`
+	GateScore		     float64 `json:"gate_score"`
+	JamScore		     float64 `json:"jam_score"`
+	NetScore		     float64 `json:"net_score"`
+	StageOfPhd		     string  `json:"stage_of_phd"`
 }
