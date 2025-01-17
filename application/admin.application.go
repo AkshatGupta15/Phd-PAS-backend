@@ -53,6 +53,10 @@ type studentAdminsideResponse struct {
 	StatusName                   string          `json:"status_name"`
 	Frozen                       bool            `json:"frozen"`
 	Answers                      map[uint]string `json:"questions"`
+    GateScore                   float64         `json:"gate_score"`
+    JamScore                    float64         `json:"jam_score"`
+    NetScore 			   		 float64         `json:"net_score"`
+    StageOfPhd				 string          `json:"stage_of_phd"`
 }
 
 func getStudentsByRole(ctx *gin.Context) {
@@ -164,6 +168,10 @@ func getStudentsByRole(ctx *gin.Context) {
 		applicant_details.FriendPhone = student.FriendPhone
 		applicant_details.Frozen = studentRC.IsFrozen
 		applicant_details.Answers = returnedAnswerArray[s.StudentRCID]
+		applicant_details.GateScore = student.GateScore
+		applicant_details.JamScore = student.JamScore	
+		applicant_details.NetScore = student.NetScore
+		applicant_details.StageOfPhd = student.StageOfPhd
 
 		validApplicants = append(validApplicants, applicant_details)
 	}
